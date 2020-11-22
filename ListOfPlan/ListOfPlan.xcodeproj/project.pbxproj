@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C280DCDA0CD1C64FE068262 /* Pods_List_Of_Plan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9777A84667599BE88E41214B /* Pods_List_Of_Plan.framework */; };
 		846270C8256AFC7200BD0E3F /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846270C7256AFC7200BD0E3F /* DatePicker.swift */; };
+		846270CC256B086D00BD0E3F /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846270CB256B086D00BD0E3F /* DataBaseManager.swift */; };
 		8488310125675C4B00DD19D4 /* AddItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488310025675C4B00DD19D4 /* AddItemsVC.swift */; };
 		84D3BB9E249DF47A0093192A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3BB9D249DF47A0093192A /* AppDelegate.swift */; };
 		84D3BBA0249DF47A0093192A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3BB9F249DF47A0093192A /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		59C80D2B79D55E2C0BBDA8B9 /* Pods-List Of Plan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-List Of Plan.release.xcconfig"; path = "Target Support Files/Pods-List Of Plan/Pods-List Of Plan.release.xcconfig"; sourceTree = "<group>"; };
 		846270C7256AFC7200BD0E3F /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
+		846270CB256B086D00BD0E3F /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		8488310025675C4B00DD19D4 /* AddItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsVC.swift; sourceTree = "<group>"; };
 		84D3BB9A249DF47A0093192A /* ListOfPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListOfPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D3BB9D249DF47A0093192A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				84D3BBB3249DF7C70093192A /* Model.swift */,
+				846270CB256B086D00BD0E3F /* DataBaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				84D3BBB2249DF6DD0093192A /* ToDoListVC.swift in Sources */,
 				84D3BBA0249DF47A0093192A /* SceneDelegate.swift in Sources */,
 				8488310125675C4B00DD19D4 /* AddItemsVC.swift in Sources */,
+				846270CC256B086D00BD0E3F /* DataBaseManager.swift in Sources */,
 				84D3BBB4249DF7C70093192A /* Model.swift in Sources */,
 				846270C8256AFC7200BD0E3F /* DatePicker.swift in Sources */,
 			);

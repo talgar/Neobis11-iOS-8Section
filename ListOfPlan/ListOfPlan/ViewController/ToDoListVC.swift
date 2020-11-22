@@ -7,11 +7,14 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class ToDoListVC: UITableViewController {
         
 
+    var item : Items?
+    var toDoItems : Results<Items>!
+    
     @IBAction func editAction(_ sender: Any) {
         tableView.setEditing(!tableView.isEditing, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -73,21 +76,21 @@ class ToDoListVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            removeItem(at: indexPath.row)
+           // removeItem(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {}
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if changeState(at: indexPath.row) {
-            
-            tableView.cellForRow(at: indexPath)?.imageView?.image = #imageLiteral(resourceName: "check")
-        } else {
-            tableView.cellForRow(at: indexPath)?.imageView?.image = #imageLiteral(resourceName: "uncheck")
-        }
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        if changeState(at: indexPath.row) {
+//
+//            tableView.cellForRow(at: indexPath)?.imageView?.image = #imageLiteral(resourceName: "check")
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.imageView?.image = #imageLiteral(resourceName: "uncheck")
+//        }
         
         
     }

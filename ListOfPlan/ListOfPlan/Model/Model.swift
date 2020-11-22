@@ -14,23 +14,32 @@ import RealmSwift
 class Items : Object {
     @objc dynamic var name = ""
     @objc dynamic var completed = false
-}
-
-var realm: Realm!
-
-var toDoItems: Results<Items>{
-    get {
-      return realm.objects(Items.self)
+    
+    func isCompleted() {
+        completed = !completed
+    }
+    
+    var toDoItems : [Items] = []
+    
+    func newToDo() -> Items {
+        let item = Items()
+        toDoItems.append(item)
+        item.completed = false
+        return item
     }
 }
 
 
-func removeItem(at Index : Int) {
-    try! realm!.write {
-        realm!.delete(toDoItems)
-    }
-    setBadge()
-}
+
+
+
+
+//func removeItem(at Index : Int) {
+//    try! realm!.write {
+//        realm!.delete(toDoItems)
+//    }
+//    setBadge()
+//}
 
 //func moveItem(fromIndex: Int, toIndex: Int) {
 //    let from = toDoItems[fromIndex]
@@ -38,27 +47,27 @@ func removeItem(at Index : Int) {
 //    toDoItems.insert(from, at: toIndex)
 //    setBadge()
 //}
-
-func changeState(at item: Int) -> Bool {
-    toDoItems[item].completed = !(toDoItems[item].completed)
-    setBadge()
-    return toDoItems[item].completed
-}
-
-
-//MARK: - Notification
-func requestForNotification( ) {
-    UNUserNotificationCenter.current().requestAuthorization(options: .badge) { (isEnabled, error) in
-    }
-}
-
-func setBadge( ) {
-    var totalBadgeNumber = 0
-    for i in toDoItems {
-        if (i.completed) == false {
-            totalBadgeNumber += 1
-        }
-    }
-    UIApplication.shared.applicationIconBadgeNumber = totalBadgeNumber
-}
+//
+//func changeState(at item: Int) -> Bool {
+//    toDoItems[item].completed = !(toDoItems[item].completed)
+//    setBadge()
+//    return toDoItems[item].completed
+//}
+//
+//
+////MARK: - Notification
+//func requestForNotification( ) {
+//    UNUserNotificationCenter.current().requestAuthorization(options: .badge) { (isEnabled, error) in
+//    }
+//}
+//
+//func setBadge( ) {
+//    var totalBadgeNumber = 0
+//    for i in toDoItems {
+//        if (i.completed) == false {
+//            totalBadgeNumber += 1
+//        }
+//    }
+//    UIApplication.shared.applicationIconBadgeNumber = totalBadgeNumber
+//}
 
