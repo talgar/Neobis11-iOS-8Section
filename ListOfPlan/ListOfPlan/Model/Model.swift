@@ -20,7 +20,7 @@ var realm: Realm!
 
 var toDoItems: Results<Items>{
     get {
-        return realm.objects(Items.self)
+      return realm.objects(Items.self)
     }
 }
 
