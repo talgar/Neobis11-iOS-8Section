@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import RealmSwift
 
 class AddItemsVC: UIViewController {
-  
-    var item : Items?
-    
+
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet weak var newItemTextField: UITextField!
     
@@ -22,10 +19,11 @@ class AddItemsVC: UIViewController {
     }
     
     @IBAction func addItemBtn(_ sender: Any) {
-        if let item = item, let newItem = newItemTextField.text {
-            try! DataBaseManager.sharedDB.dataBase.write {
-                item.name = newItem
-            }
+        
+        let newName = newItemTextField.text
+        
+        if newName != "" {
+            addItem(nameItem: newName!)
         }
     }
 }
