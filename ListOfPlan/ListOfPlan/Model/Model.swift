@@ -14,6 +14,7 @@ import RealmSwift
 class Items : Object {
 
    @objc dynamic  var name = ""
+   @objc dynamic  var date = Date()
    @objc dynamic var completed = false
     
 }

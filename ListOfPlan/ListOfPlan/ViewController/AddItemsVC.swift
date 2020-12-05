@@ -14,9 +14,13 @@ class AddItemsVC: UIViewController {
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet weak var newItemTextField: UITextField!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         newItemTextField.becomeFirstResponder()
+        datePicker.preferredDatePickerStyle = .wheels
     }
     
     @IBAction func addItemBtn(_ sender: Any) {
@@ -24,8 +28,11 @@ class AddItemsVC: UIViewController {
         if let newName = newItemTextField.text, !newName.isEmpty {
             let newItem = Items()
             newItem.name = newName
+            newItem.date = datePicker.date
             newItem.completed = false
             DBManager.sharedInstance.addData(object: newItem)
+            print("DONE \(newItem.name)")
+            print("DONE \(newItem.date)")
         }
     }
 }

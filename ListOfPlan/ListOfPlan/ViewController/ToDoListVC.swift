@@ -41,7 +41,7 @@ class ToDoListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return toDoItems.count
+        return 0 //toDoItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +51,7 @@ class ToDoListVC: UITableViewController {
         let item = toDoItems[indexPath.row]
         
         cell.textLabel?.text = item.name
-       // cell.detailTextLabel?.text = "4 Dec 03:03"
+        //cell.detailTextLabel?.text = item.date
         
         
         if (item.completed) == true  {
