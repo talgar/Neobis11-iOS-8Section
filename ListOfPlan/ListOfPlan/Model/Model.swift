@@ -13,7 +13,7 @@ import RealmSwift
 
 class Items : Object {
     @objc dynamic  var name = ""
-    @objc dynamic var date: Date = Date()
+    @objc dynamic var date : Date = Date()
     @objc dynamic var completed = false
     
 }
@@ -21,10 +21,10 @@ class Items : Object {
 
 
 ////MARK: - Notification
-//func requestForNotification( ) {
-//    UNUserNotificationCenter.current().requestAuthorization(options: .badge) { (isEnabled, error) in
-//    }
-//}
+func requestForNotification( ) {
+    UNUserNotificationCenter.current().requestAuthorization(options: .providesAppNotificationSettings) { (isEnabled, error) in
+    }
+}
 //
 //func setBadge( ) {
 //    realm.beginWrite()

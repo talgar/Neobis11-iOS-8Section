@@ -153,6 +153,12 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="oQw-b6-MVf">
                                 <rect key="frame" x="20" y="208" width="374" height="216"/>
                             </datePicker>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j8x-0j-xkq">
+                                <rect key="frame" x="20" y="615" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TAa-qj-gMe"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
@@ -316,14 +322,14 @@
                     <connections>
                         <outlet property="addBTN" destination="j5y-ur-Gja" id="xlC-RP-Aad"/>
                         <outlet property="cancelBTN" destination="MxZ-Dq-CXX" id="C2W-tH-W7j"/>
-                        <outlet property="datePicker" destination="oQw-b6-MVf" id="ZY3-YI-zP3"/>
+                        <outlet property="datePicker" destination="oQw-b6-MVf" id="1hF-tE-xvD"/>
                         <outlet property="newItemTextField" destination="rd8-R8-EHk" id="wXJ-db-KEJ"/>
                         <outlet property="titleLabel" destination="T3v-sW-N3l" id="H8E-6V-Iyx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQG-wG-rkq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1750.4464285714284" y="173.91304347826087"/>
+            <point key="canvasLocation" x="1749.2753623188407" y="173.4375"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

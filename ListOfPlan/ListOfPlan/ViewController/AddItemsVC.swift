@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+@available(iOS 14.0, *)
 class AddItemsVC: UIViewController, UITextFieldDelegate {
     
 
@@ -19,6 +20,10 @@ class AddItemsVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cancelBTN: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
+    
+//    @IBOutlet weak var dateField: UITextField!
+//    let datepicker = UIDatePicker()
+    
     private let realm = try! Realm()
     
     override func viewDidLoad() {
@@ -27,8 +32,9 @@ class AddItemsVC: UIViewController, UITextFieldDelegate {
         cancelBTN.layer.cornerRadius = 6
         newItemTextField.becomeFirstResponder()
         date()
+
     }
-    
+        
     @IBAction func addItemBtn(_ sender: Any) {
         
         if let textName = newItemTextField.text, !textName.isEmpty {
@@ -47,6 +53,28 @@ class AddItemsVC: UIViewController, UITextFieldDelegate {
     func date(){
         let date = Calendar.current.date(byAdding: .year, value: 0, to: Date())
         datePicker.minimumDate = date
-        datePicker.preferredDatePickerStyle = .automatic
+        datePicker.preferredDatePickerStyle = .wheels
+        
+//        dateField.inputView = datepicker
+//        datepicker.datePickerMode = .dateAndTime
+//        datepicker.preferredDatePickerStyle = .inline
+//
+//        let toolbar = UIToolbar()
+//        toolbar.sizeToFit()
+//        let doneBTN = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+//        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//        toolbar.setItems([flexSpace,doneBTN], animated: true)
+//        dateField.inputAccessoryView = toolbar
     }
+//
+//    @objc func doneAction() {
+//        dateFormatter()
+//        view.endEditing(true)
+//    }
+//
+//    func dateFormatter() {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd.mm.yyyy hh:mm"
+//        dateField.text = formatter.string(from: datepicker.date)
+//    }
 }
