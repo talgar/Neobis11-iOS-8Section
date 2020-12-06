@@ -21,27 +21,27 @@
                         <color key="separatorColor" systemColor="systemGray4Color"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="OJN-8W-4Js" detailTextLabel="b1Y-UW-Fed" imageView="TB6-aX-eXd" style="IBUITableViewCellStyleSubtitle" id="lHM-4I-jJM">
-                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="67.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lHM-4I-jJM" id="MBT-p9-Z35">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="67.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OJN-8W-4Js">
-                                            <rect key="frame" x="91" y="10" width="33" height="20.5"/>
+                                            <rect key="frame" x="103" y="8.5" width="38" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="uncheck" id="TB6-aX-eXd">
-                                            <rect key="frame" x="20" y="0.0" width="56" height="55.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="68" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b1Y-UW-Fed">
-                                            <rect key="frame" x="91" y="31.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="103" y="36" width="56" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -55,19 +55,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="To Do Items" id="lp1-bb-c3V">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="ujy-yl-h8h">
-                                <color key="tintColor" systemColor="linkColor"/>
-                                <connections>
-                                    <segue destination="MaK-Rl-1Wc" kind="showDetail" animates="NO" id="Zxq-LK-Gaf"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="edit" id="DPs-wZ-O8k">
-                                <connections>
-                                    <action selector="editAction:" destination="UDD-sw-xsq" id="4no-yC-AaD"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ujy-yl-h8h">
+                            <color key="tintColor" systemColor="linkColor"/>
+                            <connections>
+                                <segue destination="MaK-Rl-1Wc" kind="showDetail" animates="NO" id="Zxq-LK-Gaf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbk-Gu-7ZX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,9 +314,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="cmG-4D-cb5"/>
                     <connections>
+                        <outlet property="addBTN" destination="j5y-ur-Gja" id="xlC-RP-Aad"/>
+                        <outlet property="cancelBTN" destination="MxZ-Dq-CXX" id="C2W-tH-W7j"/>
                         <outlet property="datePicker" destination="oQw-b6-MVf" id="ZY3-YI-zP3"/>
                         <outlet property="newItemTextField" destination="rd8-R8-EHk" id="wXJ-db-KEJ"/>
-                        <outlet property="titleName" destination="T3v-sW-N3l" id="dlJ-ai-J9O"/>
+                        <outlet property="titleLabel" destination="T3v-sW-N3l" id="H8E-6V-Iyx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQG-wG-rkq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

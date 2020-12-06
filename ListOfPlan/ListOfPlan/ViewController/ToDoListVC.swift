@@ -12,36 +12,30 @@ import RealmSwift
 
 class ToDoListVC: UITableViewController {
     
-    var toDoItems: Results<Items>!
-
+    private let realm = try! Realm()
+    private var toDoItems = [Items]()
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
-        //tableView.reloadData()
+        toDoItems = realm.objects(Items.self).map({ $0 })
+        tableView.reloadData()
     }
 
-    
-    
-    
-//    @IBAction func editAction(_ sender: Any) {
-//        tableView.setEditing(!tableView.isEditing, animated: true)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//            self.tableView.reloadData()
-//        }
-//    }
-    
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0 //toDoItems.count
+        return toDoItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +45,7 @@ class ToDoListVC: UITableViewController {
         let item = toDoItems[indexPath.row]
         
         cell.textLabel?.text = item.name
-        //cell.detailTextLabel?.text = item.date
+        cell.detailTextLabel?.text = Self.dateFormatter.string(from: item.date)
         
         
         if (item.completed) == true  {
@@ -60,15 +54,18 @@ class ToDoListVC: UITableViewController {
            cell.imageView?.image = #imageLiteral(resourceName: "uncheck")
         }
         
-        if tableView.isEditing {
-            cell.textLabel?.alpha = 0.4
-            cell.imageView?.alpha = 0.4
-        } else {
-            cell.textLabel?.alpha = 1
-            cell.imageView?.alpha = 1
-        }
-        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
+       
+        let item = toDoItems[indexPath.row]
+        try! self.realm.write({
+            item.completed = !item.completed
+        })
+        
+        //refresh rows
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     // Override to support conditional editing of the table view.
@@ -76,44 +73,21 @@ class ToDoListVC: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        DBManager.sharedInstance.deleteFromDb(object: toDoItems[indexPath.row])
-        tableView.reloadData()
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if DBManager.sharedInstance.completedFromDB(object: toDoItems[indexPath.row]) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
             
-            tableView.cellForRow(at: indexPath)?.imageView?.image = #imageLiteral(resourceName: "check")
-        } else {
-            tableView.cellForRow(at: indexPath)?.imageView?.image = #imageLiteral(resourceName: "uncheck")
-        }
-        //tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
-        
-
-//    // Override to support rearranging the table view.
-//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-//        
-//        moveItem(fromIndex: fromIndexPath.row, toIndex: to.row)
-//        tableView.reloadData()
-//    }
-//
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-
-        if tableView.isEditing {
-            return .none
-        } else {
-             return .delete
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
+            let item = toDoItems[indexPath.row]
+            try! self.realm.write({
+                self.realm.delete(item)
+            })
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        } else if editingStyle == .insert {}
     }
 }
+
+
+

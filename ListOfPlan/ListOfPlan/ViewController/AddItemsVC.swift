@@ -9,30 +9,44 @@
 import UIKit
 import RealmSwift
 
-class AddItemsVC: UIViewController {
+class AddItemsVC: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var titleName: UILabel!
+
     @IBOutlet weak var newItemTextField: UITextField!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var addBTN: UIButton!
+    @IBOutlet weak var cancelBTN: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    private let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addBTN.layer.cornerRadius = 6
+        cancelBTN.layer.cornerRadius = 6
         newItemTextField.becomeFirstResponder()
-        datePicker.preferredDatePickerStyle = .wheels
+        date()
     }
     
     @IBAction func addItemBtn(_ sender: Any) {
         
-        if let newName = newItemTextField.text, !newName.isEmpty {
+        if let textName = newItemTextField.text, !textName.isEmpty {
+            let date = datePicker.date
+            
+            realm.beginWrite()
             let newItem = Items()
-            newItem.name = newName
-            newItem.date = datePicker.date
+            newItem.name = textName
+            newItem.date = date
             newItem.completed = false
-            DBManager.sharedInstance.addData(object: newItem)
-            print("DONE \(newItem.name)")
-            print("DONE \(newItem.date)")
+            realm.add(newItem)
+            try! realm.commitWrite()
         }
+    }
+    
+    func date(){
+        let date = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+        datePicker.minimumDate = date
+        datePicker.preferredDatePickerStyle = .automatic
     }
 }
