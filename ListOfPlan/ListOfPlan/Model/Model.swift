@@ -7,37 +7,30 @@
 //
 
 import Foundation
-import UserNotifications
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class Items : Object {
     @objc dynamic  var name = ""
     @objc dynamic var date : Date = Date()
     @objc dynamic var completed = false
-    
 }
 
 
+func setNotification(item:Items) {
 
-////MARK: - Notification
-func requestForNotification( ) {
-    UNUserNotificationCenter.current().requestAuthorization(options: .providesAppNotificationSettings) { (isEnabled, error) in
+    let content = UNMutableNotificationContent()
+    content.title = "DO NOT FORGET:"
+    content.body =  item.name
+    content.sound = UNNotificationSound.default
+    
+    let targetDate = item.date
+    let trigger = UNCalendarNotificationTrigger(dateMatching:Calendar.current.dateComponents([.year, .month, .day, .hour, .minute],from: targetDate),repeats: false)
+    
+    let reguest = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+    
+    UNUserNotificationCenter.current().add(reguest) { (error) in
+        print(error?.localizedDescription as Any)
     }
 }
-//
-//func setBadge( ) {
-//    realm.beginWrite()
-//    var toDoItems = Items()
-//    var totalBadgeNumber = 0
-//    for i in toDoItems {
-//        if (i.completed) == false {
-//            totalBadgeNumber += 1
-//        }
-//    }
-//    try! realm.commitWrite()
-//    UIApplication.shared.applicationIconBadgeNumber = totalBadgeNumber
-//}
-
-
-

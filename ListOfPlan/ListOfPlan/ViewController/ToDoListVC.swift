@@ -9,17 +9,10 @@
 import UIKit
 import RealmSwift
 
-
 class ToDoListVC: UITableViewController {
     
     private let realm = try! Realm()
     private var toDoItems = [Items]()
-    
-    static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        return dateFormatter
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +36,12 @@ class ToDoListVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let item = toDoItems[indexPath.row]
+       
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, d MMM, yyyy, h:mm a"
         
         cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = Self.dateFormatter.string(from: item.date)
+        cell.detailTextLabel?.text = formatter.string(from: item.date)
         
         
         if (item.completed) == true  {

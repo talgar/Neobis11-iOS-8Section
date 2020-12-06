@@ -8,8 +8,8 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
-@available(iOS 14.0, *)
 class AddItemsVC: UIViewController, UITextFieldDelegate {
     
 
@@ -20,61 +20,44 @@ class AddItemsVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cancelBTN: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
-    
-//    @IBOutlet weak var dateField: UITextField!
-//    let datepicker = UIDatePicker()
-    
     private let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBTN.layer.cornerRadius = 6
-        cancelBTN.layer.cornerRadius = 6
-        newItemTextField.becomeFirstResponder()
-        date()
-
+        setUpUI()
+        setUpDate()
     }
         
     @IBAction func addItemBtn(_ sender: Any) {
         
-        if let textName = newItemTextField.text, !textName.isEmpty {
-            let date = datePicker.date
+        if let newItemName = newItemTextField.text, !newItemName.isEmpty {
+            let newItemdate = datePicker.date
             
             realm.beginWrite()
             let newItem = Items()
-            newItem.name = textName
-            newItem.date = date
+            newItem.name = newItemName
+            newItem.date = newItemdate
             newItem.completed = false
+            setNotification(item: newItem)
             realm.add(newItem)
             try! realm.commitWrite()
+        
         }
     }
     
-    func date(){
+    func setUpUI(){
+        titleLabel.layer.masksToBounds = true
+        newItemTextField.layer.masksToBounds = true
+        titleLabel.layer.cornerRadius = 4
+        newItemTextField.layer.cornerRadius = 4
+        addBTN.layer.cornerRadius = 4
+        cancelBTN.layer.cornerRadius = 4
+        newItemTextField.becomeFirstResponder()
+    }
+    
+    func setUpDate(){
         let date = Calendar.current.date(byAdding: .year, value: 0, to: Date())
         datePicker.minimumDate = date
         datePicker.preferredDatePickerStyle = .wheels
-        
-//        dateField.inputView = datepicker
-//        datepicker.datePickerMode = .dateAndTime
-//        datepicker.preferredDatePickerStyle = .inline
-//
-//        let toolbar = UIToolbar()
-//        toolbar.sizeToFit()
-//        let doneBTN = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
-//        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//        toolbar.setItems([flexSpace,doneBTN], animated: true)
-//        dateField.inputAccessoryView = toolbar
     }
-//
-//    @objc func doneAction() {
-//        dateFormatter()
-//        view.endEditing(true)
-//    }
-//
-//    func dateFormatter() {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd.mm.yyyy hh:mm"
-//        dateField.text = formatter.string(from: datepicker.date)
-//    }
 }
