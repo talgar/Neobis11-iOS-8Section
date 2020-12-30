@@ -24,9 +24,16 @@ class AddItemsVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.newItemTextField.delegate = self
         setUpUI()
         setUpDate()
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
         
     @IBAction func addItemBtn(_ sender: Any) {
         
@@ -41,7 +48,6 @@ class AddItemsVC: UIViewController, UITextFieldDelegate {
             setNotification(item: newItem)
             realm.add(newItem)
             try! realm.commitWrite()
-        
         }
     }
     
